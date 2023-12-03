@@ -24,8 +24,35 @@ body {
     padding: 10px;
 }
 
-#current-weather, #forecast {
+#current-weather, #five-day-forecast {
     margin-top: 20px;
     padding: 20px;
     background-color: #e9ecef;
 }
+
+.full-height-column {
+    height: 80vh;
+    background-color: #f0f0f0; 
+}
+
+.half-height-column {
+    height: 40vh;
+    background-color: #f0f0f0;
+}
+
+/* Define the height for medium screens and larger */
+@media (min-width: 768px) {
+    .full-height-column-md {
+        height: 90vh; /* Adjust the percentage to your preference */
+        background-color: #f0f0f0;
+    }
+}
+
+/* Define the height for large screens and larger */
+@media (min-width: 992px) {
+    .full-height-column-lg {
+        height: 90vh; /* Adjust the percentage to your preference */
+        background-color: #f0f0f0;
+    }
+}
+

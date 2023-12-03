@@ -1,0 +1,31 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+}
+
+.container-fluid {
+    padding: 20px;
+}
+
+#search-container {
+    margin-bottom: 20px;
+}
+
+#search-form {
+    display: flex;
+}
+
+#city-input {
+    flex: 1;
+}
+
+#search-history {
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+#current-weather, #forecast {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #e9ecef;
+}

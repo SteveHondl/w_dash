@@ -20,67 +20,78 @@
             <input type="text" id="city-input" class="py-2 form-control" placeholder="City Name">
             <button id="search-btn" class="btn btn-success py-2 w-100 mt-3 mb-2">Search</button>
           </form>
+          <div id="search-history-container" class="mt-4">
+            <h5 class="fw-bold">Search History</h5>
+            <ul id="search-history-list" class="list-unstyled">
+            <!-- dynamic search history -->
+            </ul>
+          </div>
         </div>
         <div class="col-xxl-9 col-md-8 mt-md-1 mt-4 pe-lg-4">
-          <div class="current-weather bg-success text-white py-2 px-4 rounded-3">
+          <div class="current-weather bg-success text-white py-2 px-4">
             <div class="mt-3 d-flex justify-content-between">
               <div>
-                <h3 class="fw-bold">_______ ( ______ )</h3>
-                <h6 class="my-3 mt-3">Temperature: __°F</h6>
-                <h6 class="my-3">Wind: __ MPH</h6>
-                <h6 class="my-3">Humidity: __%</h6>
+                <h3 class="fw-bold" id="current-city">Current City</h3>
+                <h6 class="my-3 mt-3" id="current-temp">Temperature:</h6>
+                <h6 class="my-3" id="current-wind">Wind:</h6>
+                <h6 class="my-3" id="current-humidity">Humidity:</h6>
               </div>
           </div>
           </div>
           <h4 class="fw-bold my-4">5-Day Forecast</h4>
           <div class="days-forecast row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 justify-content-between">
             <div class="col mb-3">
+            <div id="day-1"></div>
               <div class="card border-0 bg-secondary text-white">
                 <div class="card-body p-3 text-white">
-                  <h5 class="card-title fw-semibold">( ______ )</h5>
-                  <h6 class="card-text my-3 mt-3">Temp: __°F</h6>
-                  <h6 class="card-text my-3">Wind: __ MPH</h6>
-                  <h6 class="card-text my-3">Humidity: __%</h6>
+                  <h5 class="card-title fw-semibold" id="day-1-date">Day 1</h5>
+                  <h6 class="card-text my-3 mt-3" id="day-1-temp">Temp:</h6>
+                  <h6 class="card-text my-3" id="day-1-wind">Wind:</h6>
+                  <h6 class="card-text my-3" id="day-1-humidity">Humidity:</h6>
                 </div>
               </div>
             </div>
             <div class="col mb-3">
+            <div id="day-2"></div>
               <div class="card border-0 bg-secondary text-white">
                 <div class="card-body p-3 text-white">
-                  <h5 class="card-title fw-semibold">( ______ )</h5>
-                  <h6 class="card-text my-3 mt-3">Temp: __°F</h6>
-                  <h6 class="card-text my-3">Wind: __ MPH</h6>
-                  <h6 class="card-text my-3">Humidity: __%</h6>
+                  <h5 class="card-title fw-semibold" id="day-2-date">Day 2</h5>
+                  <h6 class="card-text my-3 mt-3" id="day-2-temp">Temp:</h6>
+                  <h6 class="card-text my-3" id="day-2-wind">Wind:</h6>
+                  <h6 class="card-text my-3" id="day-2-humidity">Humidity:</h6>
                 </div>
               </div>
             </div>
             <div class="col mb-3">
+            <div id="day-3"></div>
               <div class="card border-0 bg-secondary text-white">
                 <div class="card-body p-3 text-white">
-                  <h5 class="card-title fw-semibold">( ______ )</h5>
-                  <h6 class="card-text my-3 mt-3">Temp: __°F</h6>
-                  <h6 class="card-text my-3">Wind: __ MPH</h6>
-                  <h6 class="card-text my-3">Humidity: __%</h6>
+                  <h5 class="card-title fw-semibold" id="day-3-date">Day 3</h5>
+                  <h6 class="card-text my-3 mt-3" id="day-3-temp">Temp:</h6>
+                  <h6 class="card-text my-3" id="day-3-wind">Wind:</h6>
+                  <h6 class="card-text my-3" id="day-3-humidity">Humidity:</h6>
                 </div>
               </div>
             </div>
             <div class="col mb-3">
+            <div id="day-4"></div>
               <div class="card border-0 bg-secondary text-white">
                 <div class="card-body p-3 text-white">
-                  <h5 class="card-title fw-semibold">( ______ )</h5>
-                  <h6 class="card-text my-3 mt-3">Temp: __°F</h6>
-                  <h6 class="card-text my-3">Wind: __ MPH</h6>
-                  <h6 class="card-text my-3">Humidity: __%</h6>
+                  <h5 class="card-title fw-semibold" id="day-4-date">Day 4</h5>
+                  <h6 class="card-text my-3 mt-3" id="day-4-temp">Temp:</h6>
+                  <h6 class="card-text my-3" id="day-4-wind">Wind:</h6>
+                  <h6 class="card-text my-3" id="day-4-humidity">Humidity:</h6>
                 </div>
               </div>
             </div>
             <div class="col mb-3">
+            <div id="day-5"></div>
               <div class="card border-0 bg-secondary text-white">
                 <div class="card-body p-3 text-white">
-                  <h5 class="card-title fw-semibold">( ______ )</h5>
-                  <h6 class="card-text my-3 mt-3">Temp: __°F</h6>
-                  <h6 class="card-text my-3">Wind: __ MPH</h6>
-                  <h6 class="card-text my-3">Humidity: __%</h6>
+                  <h5 class="card-title fw-semibold" id="day-5-date">Day 5</h5>
+                  <h6 class="card-text my-3 mt-3" id="day-5-temp">Temp:</h6>
+                  <h6 class="card-text my-3" id="day-5-wind">Wind:</h6>
+                  <h6 class="card-text my-3" id="day-5-humidity">Humidity:</h6>
                 </div>
               </div>
             </div>

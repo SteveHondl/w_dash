@@ -24,11 +24,37 @@ function getWeatherData(cityName) {
         // Log the data to the console
         console.log('Weather Data:', data);
 
-        // TODO: Update the UI with the weather data
+      // Update the UI with the weather data
+      $('#current-city').text(data.city.name);
+      var tempFahrenheit = ((data.list[0].main.temp - 273.15) * 9/5 + 32).toFixed(2);
+      $('#current-temp').text(tempFahrenheit + ` F\u00B0`);
+      $('#current-wind').text(data.list[0].wind.speed + ` Wind Speed (MPH)`);
+      $('#current-humidity').text(data.list[0].main.humidity + ` % Humidity`);
+
+      updateForecast(data.list.slice(1, 6)); 
+
       },
       error: function (error) {
         console.error('Error fetching data:', error);
       }
     });
   }
-});
+
+function updateForecast(forecastData) {
+      var currentDate = new Date();
+    // Iterate through the forecast data and update the UI
+    for (let i = 0; i < forecastData.length; i++) {
+      currentDate.setDate(currentDate.getDate() + 1);
+      var date = currentDate.toLocaleDateString();
+      var temp = ((forecastData[i].main.temp - 273.15) * 9/5 + 32).toFixed(2);
+      var wind = forecastData[i].wind.speed.toFixed(2);
+      var humidity = forecastData[i].main.humidity.toFixed(2);
+      $('#day-' + (i + 1) + '-date').text(date);
+      $('#day-' + (i + 1) + '-temp').text(temp + `F\u00B0`);
+      $('#day-' + (i + 1) + '-wind').text(wind + ` Wind Speed (MPH)`);
+      $('#day-' + (i + 1) + '-humidity').text(humidity + ` % Humidity`);
+
+
+  }
+}}
+);

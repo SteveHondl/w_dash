@@ -4,6 +4,9 @@ $(document).ready(function () {
 var apiKey = `4a1b4ca6cde231990b27cb12f870fadc`;
 //API endpoint
 var apiUrl = `https://api.openweathermap.org/data/2.5/forecast`;
+// Load search history from local storage on page load OR load empty array
+var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
 //Event Listener  on the search button
 $('#search-bar').submit(function (event) {
     event.preventDefault();
@@ -92,7 +95,29 @@ function updateForecast(forecastData) {
 }
 ;
 //Function to update the search history in the UI with city name
-function updateSearchHistory(cityName) {
+  function updateSearchHistory(cityName) {
+  // Add the city to the search history array
+  searchHistory = [cityName].concat(searchHistory);
+  // Limit the search history to 20 searches 
+  searchHistory = searchHistory.slice(0, 20);
+  // Save the updated search history to local storage
+  localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+
+  console.log(`updated search history`, searchHistory);
+
+  //Append the updated search history to page
+  appendSearchHistoryToPage();
+
+  }
+  
+  function appendSearchHistoryToPage() {
+    // Clear the existing search history on the page
+    //This will only allow a maximum of 20 searches viewable on the page
+    $('#search-history-list').empty();
+
+    // Iterate through the search history and append items to the page
+    searchHistory.forEach(function (cityName) {
+      var listItem = $('<li>').text(cityName);
   // Create a list item for the search history
   var listItem = $('<li>').text(cityName);
 
@@ -120,6 +145,9 @@ function updateSearchHistory(cityName) {
   });
 
   // Add the list item to the top of the history list
-  $('#search-history-list').prepend(listItem);
-}
+  $('#search-history-list').append(listItem);
+  })
+  }
+//Append search history to page
+appendSearchHistoryToPage();
 });

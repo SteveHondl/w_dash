@@ -43,9 +43,10 @@ function getWeatherData(cityName) {
         //Format the current date as a string for display
         var formattedDate = `(${currentDate.toLocaleDateString()})`;
 
+        var weatherIcon = getWeatherIcon(data.list[0].weather[0].icon);
       // Update the UI with the weather data
       //Current city and formatted date
-      $('#current-city').text(`${data.city.name} ${formattedDate}`);
+      $('#current-city').html(`${data.city.name} ${formattedDate} ${weatherIcon}`);
       //Calculate and convert the temperature to Fahrenheit from Kelvins.  
       //toFixed(2) adds 2 decimal places 
       //data.list[0] contains properties of temperature, wind speed, and humidity 
@@ -70,6 +71,15 @@ function getWeatherData(cityName) {
         console.error('Error fetching data:', error);
     });
   }
+
+  // Function to get the appropriate weather icon from OpenWeatherMap
+function getWeatherIcon(iconCode) {
+  
+  var iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
+  return `<img src="${iconUrl}" alt="Weather Icon" width="80" height="80" />`;
+}
+
+
 //Function to update the 5 day forecast
 function updateForecast(forecastData) {
       //Current date for reference
@@ -86,8 +96,12 @@ function updateForecast(forecastData) {
       var wind = forecastData[i].wind.speed.toFixed(1);
       //Formate humidity
       var humidity = forecastData[i].main.humidity;
+      // Get the weather icon for the current forecast day
+      var iconCode = forecastData[i].weather[0].icon;
+      var weatherIcon = getWeatherIcon(iconCode);
+      
       //Update UI elements for each day
-      $('#day-' + (i + 1) + '-date').text(date);
+      $('#day-' + (i + 1) + '-date').html(`${date} ${weatherIcon}`);
       $('#day-' + (i + 1) + '-temp').text(temp + `F\u00B0`);
       $('#day-' + (i + 1) + '-wind').text(wind + ` Wind Speed (MPH)`);
       $('#day-' + (i + 1) + '-humidity').text(humidity + ` % Humidity`);

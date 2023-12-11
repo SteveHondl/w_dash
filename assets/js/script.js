@@ -1,4 +1,4 @@
-//Wait for document to be fully loaded before performing code
+//Wait for HTML document to load before performing code
 $(document).ready(function () {
 //OpenWeatherMap API key
 var apiKey = `4a1b4ca6cde231990b27cb12f870fadc`;
@@ -28,7 +28,7 @@ function getWeatherData(cityName) {
       .then(response => {
           //Check if the network response is a success
           if (!response.ok) {
-            //Throw Error response
+            //Throw Error response if necessary 
              throw new Error(`Network response was not ok: ${response.status}`);
             }
             //parse the response as JSON and return
@@ -38,12 +38,12 @@ function getWeatherData(cityName) {
         
         console.log('Weather Data:', data);
 
-        //Get the Current Date
-        var currentDate = new Date();
-        //Format the current date as a string for display
-        var formattedDate = `(${currentDate.toLocaleDateString()})`;
-
-        var weatherIcon = getWeatherIcon(data.list[0].weather[0].icon);
+      //Get the Current Date
+      var currentDate = new Date();
+      //Format the current date as a string for display
+      var formattedDate = `(${currentDate.toLocaleDateString()})`;
+      //Get the weather icon for the current weather condition
+      var weatherIcon = getWeatherIcon(data.list[0].weather[0].icon);
       // Update the UI with the weather data
       //Current city and formatted date
       $('#current-city').html(`${data.city.name} ${formattedDate} ${weatherIcon}`);
@@ -75,7 +75,7 @@ function getWeatherData(cityName) {
   // Function to get the appropriate weather icon from OpenWeatherMap
 function getWeatherIcon(iconCode) {
   
-  var iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
+  var iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
   return `<img src="${iconUrl}" alt="Weather Icon" width="80" height="80" />`;
 }
 
@@ -121,9 +121,8 @@ function updateForecast(forecastData) {
 
   //Append the updated search history to page
   appendSearchHistoryToPage();
-
   }
-  
+  //Function to add most recent search to the history column
   function appendSearchHistoryToPage() {
     // Clear the existing search history on the page
     //This will only allow a maximum of 20 searches viewable on the page
@@ -135,8 +134,9 @@ function updateForecast(forecastData) {
   // Create a list item for the search history
   var listItem = $('<li>').text(cityName);
 
-    // Add margin and hover effect styles
+    // Add style and margin to list item
     listItem.css({
+      'font-size': '20px',
       'margin-bottom': '5px', 
       'cursor': 'pointer',
     });
@@ -162,6 +162,6 @@ function updateForecast(forecastData) {
   $('#search-history-list').append(listItem);
   })
   }
-//Append search history to page
+//Append search history to page on document ready
 appendSearchHistoryToPage();
 });
